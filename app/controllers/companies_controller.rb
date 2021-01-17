@@ -30,7 +30,17 @@ class CompaniesController < ApplicationController
     else
       render :edit
     end
-  end  
+  end
+
+  def destroy
+    if @company.destroy
+      flash[:notice] = 'The company has been destroyed successfully.'
+    else
+      flash[:alert] = 'The company has not been destroyed.'
+    end
+
+    redirect_to companies_path
+  end
 
   private
 
@@ -40,6 +50,7 @@ class CompaniesController < ApplicationController
       :legal_name,
       :description,
       :zip_code,
+      :brand_color,
       :phone,
       :email,
       :owner_id,
@@ -50,5 +61,5 @@ class CompaniesController < ApplicationController
   def set_company
     @company = Company.find(params[:id])
   end
-  
+
 end
