@@ -33,10 +33,11 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
+    company_name = @company.name
     if @company.destroy
-      flash[:notice] = 'The company has been destroyed successfully.'
+      flash[:notice] = "The company #{company_name} has been destroyed successfully."
     else
-      flash[:alert] = 'The company has not been destroyed.'
+      flash[:alert] = "The company  #{company_name}  has not been destroyed."
     end
 
     redirect_to companies_path
